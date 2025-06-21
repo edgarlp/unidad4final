@@ -1,0 +1,24 @@
+{
+  "name": "tp-integrador-aplicaciones-web",
+  "version": "1.0.0",
+  "description": "Proyecto integrador Aplicaciones Web",
+  "type": "module",
+  "main": "backend/app.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "dev": "nodemon backend/app.js"
+  },
+  "keywords": [],
+  "author": "Edgar Rosso",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfil</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Perfil del Usuario</h1>
+    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+
+      <div class="botones">
+      <a href="productos.html" class="boton-secundario">Ver Productos</a>
+      <a href="agregar-producto.html" class="boton-secundario">Agregar Producto</a>
+    </div>
+
+    <button onclick="cerrarSesion()" class="boton-principal">Cerrar sesión</button>
+  </div>
+
+  <script>
+    async function obtenerPerfil() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const respuesta = await fetch('http://localhost:3000/auth/perfil', {
+        method: 'GET',
+        headers: { Authorization: 'Bearer ' + token }
+      });
+
+      if (respuesta.ok) {
+        const data = await respuesta.json();
+        document.getElementById('nombre').innerText = data.nombre;
+        document.getElementById('email').innerText = data.email;
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    }
+
+    obtenerPerfil();
+  </script>
+</body>
+</html>
+

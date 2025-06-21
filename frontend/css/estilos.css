@@ -1,0 +1,149 @@
+body {
+  background-color: #f0f4f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  background-color: #1a73e8;
+  color: white;
+  padding: 10px 0;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #155cc4;
+}
+
+#resultado {
+  margin-top: 10px;
+  color: red;
+}
+
+.botones {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.boton-secundario {
+  text-decoration: none;
+  background-color: #6c63ff;
+  color: white;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  display: block;
+  text-align: center;
+}
+
+.boton-secundario:hover {
+  background-color: #594de0;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+.btn-secundario {
+  background-color: #5c5c5c;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-secundario:hover {
+  background-color: #3b3b3b;
+}
+
+.btn-secundario {
+  background-color: #5c5c5c;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-secundario:hover {
+  background-color: #3b3b3b;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+.acciones {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+

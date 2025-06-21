@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Productos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #2a2a2a;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f2f2f2;
+    }
+
+    .acciones {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .boton-rojo {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .boton-verde {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="fondo">
+
+  <div class="contenedor">
+    <h1>Productos disponibles</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="listaProductos"></tbody>
+    </table>
+
+    <div class="acciones">
+      <button class="btn-secundario" onclick="window.location.href='carrito.html'">Ver Carrito</button>
+      <button class="btn-secundario" onclick="window.location.href='agregar-producto.html'">Agregar Productos</button>
+      <button class="btn-secundario" onclick="window.location.href='perfil.html'">Inicio</button>
+    </div>
+  </div>
+
+  <script>
+    async function cargarProductos() {
+      const token = localStorage.getItem('token');
+      const respuesta = await fetch('http://localhost:3000/productos', {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
+      const productos = await respuesta.json();
+      const contenedor = document.getElementById('listaProductos');
+      contenedor.innerHTML = '';
+
+      productos.forEach(prod => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+          <td><strong>${prod.nombre}</strong></td>
+          <td>$${prod.precio}</td>
+          <td>${prod.stock} unidades</td>
+          <td>
+            <button class="boton-verde" onclick='agregarAlCarrito(${JSON.stringify(prod)})'>Agregar al carrito</button>
+            <button class="boton-rojo" onclick='eliminarProducto("${prod._id}")'>Eliminar</button>
+          </td>
+        `;
+        contenedor.appendChild(fila);
+      });
+    }
+
+    function agregarAlCarrito(producto) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.push(producto);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      alert('Producto agregado al carrito');
+    }
+
+    async function eliminarProducto(id) {
+      const confirmar = confirm('¿Estás seguro de que querés eliminar este producto?');
+      if (!confirmar) return;
+
+      const token = localStorage.getItem('token');
+      const respuesta = await fetch(`http://localhost:3000/productos/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
+
+      if (respuesta.ok) {
+        alert('Producto eliminado correctamente');
+        cargarProductos(); 
+      } else {
+        alert('Error al eliminar el producto');
+      }
+    }
+
+    cargarProductos();
+  </script>
+</body>
+</html>
+
+
